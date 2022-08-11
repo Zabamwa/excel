@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, { useCallback, useEffect, useRef, useState} from 'react';
 import './App.css';
 import {Matrix} from "./components/matrix/Matrix";
 
@@ -29,10 +29,10 @@ function App() {
     };
   }, [n, generateMatrix]);
 
-  const handleChange = (e:React.ChangeEvent<HTMLInputElement>, idx:number, index: number) => {
+  const handleChange = (value:number, idx:number, index: number) => {
     const clonedData = [...matrix];
-    if (Number(e.target.value) <= 999) {
-      clonedData[idx][index] = Number(e.target.value);
+    if (value <= 999) {
+      clonedData[idx][index] = value;
     }
     setMatrix(clonedData);
   };

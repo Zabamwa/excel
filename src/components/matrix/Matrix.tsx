@@ -2,7 +2,7 @@ import React  from "react";
 
 interface Iprops {
     matrix: number[][];
-    handleChange: (event:React.ChangeEvent<HTMLInputElement>, id: number, idx: number) => void;
+    handleChange: (event:number, id: number, idx: number) => void;
 }
 
 export const Matrix = ({ matrix, handleChange }:Iprops) => {
@@ -23,7 +23,7 @@ export const Matrix = ({ matrix, handleChange }:Iprops) => {
                 <div className='inputContainer' key={`${idx}`}>
                     <div className='inputWrapper'>
                         {items && items.map((item, index) => (
-                            <input className="cell" type="text"  key={`${idx}${index}`} onChange={(e) => handleChange(e, idx, index)} value={item}/>
+                            <input className="cell" type="text"  key={`${idx}${index}`} onChange={(e) => handleChange(+e.target.value, idx, index)} value={item}/>
                         ))}
                     </div>
                     <div className='resultRowContainer'>
