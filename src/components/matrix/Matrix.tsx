@@ -2,7 +2,7 @@ import React  from "react";
 
 interface Iprops {
     matrix: number[][];
-    handleChange: (event:number, id: number, idx: number) => void;
+    handleChange: (value:number, id: number, idx: number) => void;
 }
 
 export const Matrix = ({ matrix, handleChange }:Iprops) => {
@@ -17,13 +17,21 @@ export const Matrix = ({ matrix, handleChange }:Iprops) => {
         });
         return total;
     }
+
     return (
         <div className='matrix'>
             {!!matrix.length ? matrix.map((items: number[], idx:number) => (
                 <div className='inputContainer' key={`${idx}`}>
                     <div className='inputWrapper'>
                         {items && items.map((item, index) => (
-                            <input className="cell" type="text"  key={`${idx}${index}`} onChange={(e) => handleChange(+e.target.value, idx, index)} value={item}/>
+                            <input
+                                className="cell"
+                                type="number"
+                                key={`${idx}${index}`}
+                                onChange={(e) => handleChange(+e.target.value, idx, index)}
+                                value={item}
+                                onFocus={(e) => e.target.select()}
+                            />
                         ))}
                     </div>
                     <div className='resultRowContainer'>
@@ -33,7 +41,7 @@ export const Matrix = ({ matrix, handleChange }:Iprops) => {
                         {idx === matrix.length - 1 && <p className="totalResult">{totalResult()}</p>}
                     </div>
                 </div>
-            )) : <p>Brak wierszy</p>}
+            )) : <p>No result</p>}
         </div>
     )
 }

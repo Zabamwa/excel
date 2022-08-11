@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 import './App.css';
 import {Matrix} from "./components/matrix/Matrix";
 
@@ -7,7 +7,7 @@ function App() {
   const ignore = useRef(false)
   const [matrix, setMatrix] = useState<number[][]>([]);
 
-  const generateMatrix = useCallback(() => {
+  const generateMatrix = () => {
     const clonedData:number[][]= [];
     if(ignore.current) {
       for (let i = 0; i < n; i++) {
@@ -20,14 +20,14 @@ function App() {
       }
       setMatrix(clonedData);
     }
-  },[n]);
+  };
 
   useEffect(() => {
     generateMatrix();
     return () => {
       ignore.current = true;
     };
-  }, [n, generateMatrix]);
+  }, [n]);
 
   const handleChange = (value:number, idx:number, index: number) => {
     const clonedData = [...matrix];
